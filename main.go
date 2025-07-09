@@ -59,6 +59,8 @@ func main() {
 		fmt.Printf("%s%s", out, strings.Repeat(" ", max(x - len(out), 0)))
 	}
 
+	fmt.Println("")
+
 	if scanner.Err() != nil {
 		// Handle error.
 	}
