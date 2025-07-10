@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+
 	// "log"
 	"os"
 	"regexp"
@@ -24,12 +25,13 @@ func main() {
 		fmt.Println(str)
 
 		words := strings.Fields(str)
+		// wordsRaw := strings.Split(str, " ")
 
 		x := 0
 
 		for index, word := range words {
-			re := regexp.MustCompile("[0-9]+")
-			matches := re.FindAllString(word, -1)
+			matches := regexp.MustCompile("[0-9]+").FindAllString(word, -1)
+
 			wordCount += 1
 			x += 1
 
@@ -46,16 +48,20 @@ func main() {
 	}
 
 	fmt.Println("")
+	fmt.Println("Total:")
+
+	fmt.Printf("%s", strings.Repeat(" ", 14))
 
 	for i := 1; i < wordCount; i++ {
 		x := pos[i+1]
 		v := sums[i]
 
-		if i > 1 && pos[i] == 0 {
-			continue
+		out := fmt.Sprintf("%d", int64(v))
+
+		if v == 0 {
+			out = ""
 		}
 
-		out := fmt.Sprintf("%d", int64(v))
 		fmt.Printf("%s%s", out, strings.Repeat(" ", max(x - len(out), 0)))
 	}
 
